@@ -1,0 +1,73 @@
+#Побудова графіка функції
+import numpy as np
+import matplotlib.pyplot as plt
+
+# область значень для x та y
+x_min, x_max = -1, 1
+y_min, y_max = -4, 1
+step = 0.01
+
+# створюємо масиви значень x та y
+x, y = np.meshgrid(np.arange(x_min, x_max, step),
+                   np.arange(y_min, y_max, step))
+
+# рівняння системи
+eq1 = np.sin(x+1)-y-1
+eq2 = 2*x+np.cos(y)-2
+
+# створюємо графік
+fig, ax = plt.subplots(figsize=(10, 10))
+
+# додаємо графік першого рівняння
+ax.contour(x, y, eq1, levels=[0], colors='red')
+
+# додаємо графік другого рівняння
+ax.contour(x, y, eq2, levels=[0], colors='blue')
+
+# налаштування графіка
+ax.set_xlim([x_min, x_max])
+ax.set_ylim([y_min, y_max])
+ax.set_xlabel('x')
+ax.set_ylabel('y')
+ax.set_title('Графік системи рівнянь')
+plt.grid(True)
+
+# показуємо графік
+plt.show()
+
+
+#Розв'язок системи рівнянь методом простої ітерації
+import numpy as np
+from scipy import optimize
+from scipy.misc import derivative
+import math
+
+x0 = 0.15
+y0 = -2.1
+delta = 0.1
+
+def f1(y):
+    return math.sin(x+1)-1 #задаємо функції
+def f2 (x):
+    return -math.cos+2/2 #задаємо функції
+ 
+def iter (x,y,e):
+    xn = x
+    yn = y
+    xn1 = f2(x)
+    yn1 = f1(y)
+    n = 1
+    while ((abs(xn1-xn)>=e) & (abs(yn1-yn) >=e)):
+        xn = xn1
+        yn = yn1
+        xn1 = f2(yn)
+        yn1 = f1(xn)
+        n += 1
+    print ('Simple iteration:')
+    print ('x=', xn, '\ny=',yn,'\nThe amount of iteration = ',n)
+iter(x0,y0,0.0001)
+
+def f3(x): #Задаємо функцію для перевірки
+    return math.sin(x[0]) -  math.y(x[1])  - 1, 2*x[0] + cos(y[1]) - 2
+s = optimize.root(f3, [0.,0.], method = 'hybr') #Перевірка розв*язку      #Відповіді мають співпасти
+print ('Chek',s.x)
