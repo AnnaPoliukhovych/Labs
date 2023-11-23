@@ -1,0 +1,10 @@
+import numpy as np
+a = np.array(np.random.randint(0, 5, size=(3, 4)))
+average_rows = np.mean(a, axis=1)
+average_columns = np.mean(a, axis=0)
+print("Матриця:")
+print(a)
+print("Середні значення для рядків:")
+print(average_rows)
+print("Середні значення для стовпців:")
+print(average_columns)
